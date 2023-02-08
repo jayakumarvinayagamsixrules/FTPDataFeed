@@ -16,15 +16,20 @@ namespace FTPDataFeed
                 ConnectionString = "mongodb://localhost:27017",
                 Db = "catalog",
             };
-
+     
+            var db = new MongoClient(setting);
+           
             //var db = new MongoClient(setting);
 
             var services = new ServiceCollection();
             services.AddSingleton<IMoveFile, MoveFile>();
             services.AddSingleton<DataFeedProcess>();
-            services.AddScoped<IMongoContext, MongoContext>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IECCHRepository, ECCHRepository>();
+
+            services.AddSingleton<IMongoClient>(x => db);
+            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IMeteringRepository, MeteringRepository>();
+            
+
             // Read configuration file
             FileSource fileSource = new FileSource
             {

@@ -2,13 +2,9 @@
 using DataFeed.Model;
 using DataFeed.Persistence;
 using Newtonsoft.Json;
-using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Threading;
 
 namespace DataFeed.Service.FolderProcess
 {
@@ -20,10 +16,13 @@ namespace DataFeed.Service.FolderProcess
     public class DataFeedProcess : IDataFeedProcess
     {
         private readonly IMoveFile _moveFile;
-        private readonly IECCHRepository _repository;
-        public DataFeedProcess(IMoveFile moveFile)
+        private readonly IUserRepository _userRepository;
+        private readonly IMeteringRepository _meteringRepository;
+        public DataFeedProcess(IMoveFile moveFile, IUserRepository userRepository, IMeteringRepository meteringRepository)
         {
             _moveFile = moveFile;
+            _userRepository = userRepository;
+            _meteringRepository = meteringRepository;
         }
         public void Start(FileSource fileSource)
         {
@@ -57,7 +56,16 @@ namespace DataFeed.Service.FolderProcess
 
                 var feedJson = JsonConvert.SerializeObject(listObjResult);
                 var meteringJsons = JsonConvert.DeserializeObject<List<MeteringJson>>(feedJson);
-                //_repository.AddMany(meteringJsons);
+                _meteringRepository.AddManyAsync(meteringJsons);
+                //_userRepository.GetCategories();
+
+                //var ttt = _userRepository.GetCategories().Result;
+
+                //var users = new List<User>() { 
+                //    new User{ Age = 11, Blog = "fsdfsadf", Name = "Jaya"},
+                //    new User{ Age = 15, Blog = "=======", Name = "Kumar"}
+                //};
+                //_userRepository.AddManyAsync(users);
             }
             Console.WriteLine("Data feed ended!");
         }
