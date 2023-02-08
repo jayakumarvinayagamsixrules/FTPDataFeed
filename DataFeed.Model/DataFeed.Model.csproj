@@ -47,6 +47,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="FileSource.cs" />
     <Compile Include="IMongoDbSettings.cs" />
+    <Compile Include="MeteringJson.cs" />
     <Compile Include="MongoDbSetting.cs" />
     <Compile Include="MongoOptions.cs" />
     <Compile Include="Product.cs" />

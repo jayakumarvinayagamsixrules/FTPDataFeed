@@ -173,6 +173,10 @@
       <Project>{7f19ddb8-5a10-4c66-96c9-a78957dcdfa4}</Project>
       <Name>DataFeed.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataFeed.Persistence\DataFeed.Persistence.csproj">
+      <Project>{CA564CFE-846A-4204-BFD5-89CD35E5DF96}</Project>
+      <Name>DataFeed.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataFeed.Service\DataFeed.Service.csproj">
       <Project>{A32E7164-34B1-4944-B7A8-C5E4DF5CAFDC}</Project>
       <Name>DataFeed.Service</Name>

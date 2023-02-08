@@ -16,7 +16,7 @@ namespace DataFeed.Service.FolderProcess
         public bool CopyAndMove(FileSource fileSource)
         {
             Console.WriteLine($"Source: {fileSource.Source} , Destination: {fileSource.Destination}");
-            var files = new DirectoryInfo(fileSource.Source).GetFiles("*.xlsx");
+            var files = new DirectoryInfo(fileSource.Source).GetFiles(DataFeedValue.PROCESSFILETYPE);
             //Loop throught files and Copy to destination folder
             Console.WriteLine($"File count {files.Length} going to move!");
             int _fileProcessIndex = 0;
